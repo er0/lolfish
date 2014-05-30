@@ -21,12 +21,12 @@ function lolfish -d "very rainbow. wow"
 	# green  00ff00
 	# blue   0000ff
 	#
-	set -l colors ff0000 ff5700 ff8700 ffaf00 ffd700 \
-		ffff00 d7ff00 afff00 87ff00 57ff00 \
-		00ff00 00ff57 00ff87 00ffaf 00ffd7 \
-		00ffff 00d7ff 00afff 0087ff 0057ff \
-		0000ff 5700ff 8700ff af00ff d700ff \
-		ff00ff ff00d7 ff00af ff0087 ff0057
+	set -l colors 	ff0000 ff5700 ff8700 ffaf00 ffd700 \
+			ffff00 d7ff00 afff00 87ff00 57ff00 \
+			00ff00 00ff57 00ff87 00ffaf 00ffd7 \
+			00ffff 00d7ff 00afff 0087ff 0057ff \
+			0000ff 5700ff 8700ff af00ff d700ff \
+			ff00ff ff00d7 ff00af ff0087 ff0057
 
 	#
 	# set the color differential between prompt items
@@ -69,7 +69,7 @@ function lolfish -d "very rainbow. wow"
 		# print these symbols in normal color
 		#
 		switch $arg
-			case '[' ']' ':' '@' '%' ' ' '#'
+			case '(' ')' '[' ']' ':' '@' ' '
 				set_color normal
 				echo -n -s $arg
 				continue
@@ -91,22 +91,14 @@ end
 function fish_prompt
 
 	#
-	# store the previous command return status for later
-	#
-	set -l exit_status $status
-
-	#
-	# get the number of background jobs
-	#
-        set -l jobs (count (jobs -p ^/dev/null))
-
-	#
 	# set the user, short hostname (non-fully qualified domain name)
 	# and current path (abbreviated home directory ~ ) in the standard
 	# ssh style format user@hostname:path
 	#
-	set -l uname '[' $USER '@'
-	set -l hname (hostname | sed 's/\..*//' ^/dev/null) ':'
+	set -l uname '[' 'ero' '@'
+	set -l hname 'macbook' ':'
+	#set -l uname '[' $USER '@'
+	#set -l hname (hostname | sed 's/\..*//' ^/dev/null) ':'
 	set -l cwd   (echo $PWD | sed "s,$HOME,~," ^/dev/null) ']' ' '
 
 	#
@@ -115,18 +107,8 @@ function fish_prompt
 	if set -l branch (git rev-parse --abbrev-ref HEAD ^/dev/null)
 		set -l git_dirt (count (git status -s --ignore-submodules ^/dev/null))
 		test $git_dirt -ne 0; and set -l dirty ':' $git_dirt
-		set git 'git' '[' $branch $dirty ']' ' '
+		set git 'git' '(' $branch $dirty ')' ' '
 	end
-
-	#
-	# when a command errors, display the return value of the last command !![exit_status]
-	#
-	test $exit_status -ne 0; and set -l error '!' '!' '[' $exit_status ']' ' '
-
-	#
-	# display the number of background jobs &[jobs]
-	#
-	test $jobs -ne 0; and set -l bjobs '&' '[' $jobs ']' ' '
 
 	#
 	# hashtag the prompt for root
@@ -141,5 +123,5 @@ function fish_prompt
 	#
 	# finally print the prompt
 	#
-	lolfish $uname $hname $cwd $git $bjobs $error $prompt
+	lolfish $uname $hname $cwd $git $prompt
 end
