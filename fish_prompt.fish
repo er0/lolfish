@@ -84,7 +84,9 @@ function lolfish -d "very rainbow. wow"
 
 	end
 
+	# capture the next color to use for the start the next line
 	set start_color (math $start_color+$next_color)
+
 	set_color normal
 end
 
@@ -95,10 +97,8 @@ function fish_prompt
 	# and current path (abbreviated home directory ~ ) in the standard
 	# ssh style format user@hostname:path
 	#
-	set -l uname '[' 'ero' '@'
-	set -l hname 'macbook' ':'
-	#set -l uname '[' $USER '@'
-	#set -l hname (hostname | sed 's/\..*//' ^/dev/null) ':'
+	set -l uname '[' $USER '@'
+	set -l hname (hostname | sed 's/\..*//' ^/dev/null) ':'
 	set -l cwd   (echo $PWD | sed "s,$HOME,~," ^/dev/null) ']' ' '
 
 	#
