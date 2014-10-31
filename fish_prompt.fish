@@ -106,7 +106,7 @@ function fish_prompt
 	#
 	# abbreviated home directory ~
 	#
-	set -l cwd (echo $PWD | sed -e "s,$HOME,~," 2>/dev/null)
+	set -l cwd (echo $PWD | sed -e "s,.*$HOME,~," 2>/dev/null)
 
 	#
 	# the git stuff
