@@ -17,18 +17,18 @@ function lolfish -d "very rainbow. wow"
 	#
 	# xterm-256color RGB color values
 	# valid R G B hex values : 00, 57, 87, af, d7, ff
-    #
+	#
 	# red    ff0000
 	# yellow ffff00
 	# green  00ff00
 	# blue   0000ff
 	#
 	set -l colors 	ff0000 ff5700 ff8700 ffaf00 ffd700 \
-                    ffff00 d7ff00 afff00 87ff00 57ff00 \
-                    00ff00 00ff57 00ff87 00ffaf 00ffd7 \
-                    00ffff 00d7ff 00afff 0087ff 0057ff \
-                    0000ff 5700ff 8700ff af00ff d700ff \
-                    ff00ff ff00d7 ff00af ff0087 ff0057
+			ffff00 d7ff00 afff00 87ff00 57ff00 \
+			00ff00 00ff57 00ff87 00ffaf 00ffd7 \
+			00ffff 00d7ff 00afff 0087ff 0057ff \
+			0000ff 5700ff 8700ff af00ff d700ff \
+			ff00ff ff00d7 ff00af ff0087 ff0057
 
 	#
 	# set the color differential between prompt items
@@ -61,13 +61,6 @@ function lolfish -d "very rainbow. wow"
 	for arg in $argv
 
 		#
-		# reset the color to the beginning when it rolls over
-		#
-		if test $color -gt (count $colors)
-			set color 1
-		end
-
-		#
 		# print these characters in normal color
 		#
 		switch $arg
@@ -80,15 +73,15 @@ function lolfish -d "very rainbow. wow"
 		#
 		# rainbow! wow
 		#
+		test $color -gt (count $colors); and set color 1
 		set_color $colors[$color]
 		echo -n -s $arg
 		set color (math $color + $color_step)
-
 	end
 
-    #
+	#
 	# capture the next color to use for the start the next line
-    #
+	#
 	set start_color (math $start_color + $color_step)
 
 	set_color normal
@@ -100,8 +93,13 @@ function fish_prompt
 	#
 	# last command had an error? display the return value
 	#
-    set -l exit_status $status
-	test $exit_status -ne 0; and set -l error '(' $exit_status ')' ' '
+	set -l exit_status $status
+	if test $exit_status -ne 0
+		set error '[' $exit_status ']'
+#		test -n $TMUX; and tmux setw -q window-status-current-style bg=white,fg=red;
+#	else
+#		test -n $TMUX; and tmux setw -q window-status-current-style bg=default,fg=default;
+	end
 
 	#
 	# abbreviated home directory ~
@@ -111,10 +109,11 @@ function fish_prompt
 	#
 	# the git stuff
 	#
-	if set -l git_branch (git rev-parse --abbrev-ref HEAD 2>/dev/null)
+	if test -d $PWD/.git
+		set -l git_branch (git rev-parse --abbrev-ref HEAD 2>/dev/null)
 		set -l git_dirt (count (git status -s --ignore-submodules 2>/dev/null))
 		test $git_dirt -gt 0; and set -l dirty ':' $git_dirt
-		set git ' git' '[' $git_branch $dirty ']'
+		set git 'git' '[' $git_branch $dirty ']'
 	end
 
 	#
@@ -122,16 +121,18 @@ function fish_prompt
 	#
 	switch $USER
 		case 'root'
-			set prompt '#' ' '
+			set prompt '#'
 		case '*'
-			set prompt '>' '>' ' '
+			set prompt '::'
 	end
-
+	
 	#
 	# finally print the prompt
 	#
-	lolfish (hostname -s) ':' $cwd $git ' ' $error $prompt
+	if test -n $SSH_TTY
+		lolfish $USER '@' (hostname -s) ':' $cwd ' ' $git $error $prompt ' '
+	else
+		lolfish (hostname -s) ' ' $cwd ' ' $git $error $prompt ' '
+	end
 
-    # alternate prompt using ssh style username@hostname:path
-	#lolfish '[' $USER '@' (hostname -s) ':' $cwd ']' $git ' ' $error $prompt
 end
