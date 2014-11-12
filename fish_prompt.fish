@@ -2,8 +2,8 @@
 # prompt requires: jobs, git, hostname, sed
 
 #
-# set the beginning color as a env variable so
-# the next prompt will continue the color sequence
+# set the beginning color as an environment variable so
+# the next prompt can continue the color sequence
 #  1 : red
 #  6 : yellow
 # 16 : green
@@ -11,6 +11,7 @@
 # 26 : magenta
 #
 set start_color 1
+
 
 function lolfish -d "very rainbow. wow"
 
@@ -64,7 +65,7 @@ function lolfish -d "very rainbow. wow"
 		# print these characters in normal color
 		#
 		switch $arg
-			case '(' ')' '[' ']' ':' '@' ' '
+			case ' ' '(' ')' '[' ']' ':' '@'
 				set_color normal
 				echo -n -s $arg
 				continue
@@ -95,25 +96,22 @@ function fish_prompt
 	#
 	set -l exit_status $status
 	if test $exit_status -ne 0
-		set error '[' $exit_status ']'
-#		test -n $TMUX; and tmux setw -q window-status-current-style bg=white,fg=red;
-#	else
-#		test -n $TMUX; and tmux setw -q window-status-current-style bg=default,fg=default;
+		set error '(' $exit_status ')'
 	end
 
 	#
 	# abbreviated home directory ~
 	#
-	set -l cwd (echo $PWD | sed -e "s,.*$HOME,~," 2>/dev/null)
+	set -l current_dir (echo $PWD | sed -e "s,.*$HOME,~," 2>/dev/null)
 
 	#
 	# the git stuff
 	#
 	if test -d $PWD/.git
 		set -l git_branch (git rev-parse --abbrev-ref HEAD 2>/dev/null)
-		set -l git_dirt (count (git status -s --ignore-submodules 2>/dev/null))
-		test $git_dirt -gt 0; and set -l dirty ':' $git_dirt
-		set git 'git' '[' $git_branch $dirty ']'
+		set -l git_dirty (count (git status -s --ignore-submodules 2>/dev/null))
+		test $git_dirty -gt 0; and set -l dirty ':' $git_dirty
+		set git_dir 'git' '[' $git_branch $dirty ']'
 	end
 
 	#
@@ -121,18 +119,19 @@ function fish_prompt
 	#
 	switch $USER
 		case 'root'
-			set prompt '#'
+			set prompt '#' ' '
 		case '*'
-			set prompt '::'
+			set prompt '>' '>' ' '
 	end
-	
+
+	#
+	# show username only if logged into remote via ssh
+	#
+	test -n $SSH_TTY; and set -l ssh_name $USER '@'
+
 	#
 	# finally print the prompt
 	#
-	if test -n $SSH_TTY
-		lolfish $USER '@' (hostname -s) ':' $cwd ' ' $git $error $prompt ' '
-	else
-		lolfish (hostname -s) ' ' $cwd ' ' $git $error $prompt ' '
-	end
+	lolfish $ssh_name (hostname -s) ':' $current_dir ' ' $git_dir $error $prompt
 
 end
