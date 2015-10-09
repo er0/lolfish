@@ -23,8 +23,8 @@ lolfish is a Git-aware fish theme.
      * Exit status of previous command: !:n
      * Number of tmux sessions:  t:n
      * The date:  Hour:Min Day-Month-Year
-     * You currently are a normal user: %
      * You currently are root: #
+     * You currently are not root: %
 
 ### Install
   * source both the fish_prompt.fish and fish_right_prompt.fish
