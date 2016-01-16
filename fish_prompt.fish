@@ -10,7 +10,7 @@
 # 21 : blue
 # 26 : magenta
 #
-set start_color 1
+set -g start_color 1
 
 
 function lolfish -d "very rainbow. wow"
@@ -19,7 +19,7 @@ function lolfish -d "very rainbow. wow"
 	# xterm-256color RGB color values
 	# valid R G B hex values : 00, 57, 87, af, d7, ff
 	#
-	# red    ff0000
+	# red	 ff0000
 	# yellow ffff00
 	# green  00ff00
 	# blue   0000ff
