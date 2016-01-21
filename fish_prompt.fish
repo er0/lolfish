@@ -118,5 +118,5 @@ function fish_prompt
     end
 
     # finally print the prompt
-    lolfish $USER '@' (hostname -s) ':' $current_dir $git_dir $error $prompt
+    lolfish $USER '@' (hostname -s) ':' $current_dir $git_dir $error $prompt ' '
 end
