@@ -1,4 +1,4 @@
-## lolfish
+# lolfish
 
 such rainbow, wow.
 
@@ -6,7 +6,7 @@ such rainbow, wow.
 ![lolfish][screenshot2]
 
 
-### Features
+## Features
 
   * git branch/status info while PWD in git repositories
   * Only the most rainbow friendly xterm colors!
@@ -16,9 +16,9 @@ such rainbow, wow.
   * rainbow
 
 
-### The Prompt
+## The Prompt
 
-## Left Prompt:
+### Left Prompt:
   * username@short_hostname:path
   * Git branch: [master]
   * Git status: [master:3]
@@ -26,26 +26,24 @@ such rainbow, wow.
   * You currently are not root:  >>
   * You currently are root:  #
 
-## Right Prompt:
+### Right Prompt:
   * Background jobs: [&:2]
   * Number of tmux sessions: [tmux:7]
   * The date:  Hour:Min Day-Month-Year
 
 
-### Install
+## Install
 
-## Download both left and right prompts source files
+### Download both left and right prompts source files
 
   ```
   wget -O $HOME/.config/fish/lolfish_prompt.fish       https://github.com/er0/lolfish/raw/master/fish_prompt.fish
   wget -O $HOME/.config/fish/lolfish_right_prompt.fish https://github.com/er0/lolfish/raw/master/fish_right_prompt.fish
   ```
 
-## Source the prompt files from your primary fish config
-  ```
-  echo "source $HOME/.config/fish/lolfish_prompt.fish"       >> $HOME/.config/fish/config.fish
-  echo "source $HOME/.config/fish/lolfish_right_prompt.fish" >> $HOME/.config/fish/config.fish
-  ```
+### Source the prompt files from your primary fish config
+  *  `echo "source $HOME/.config/fish/lolfish_prompt.fish"       >> $HOME/.config/fish/config.fish`
+  *  `echo "source $HOME/.config/fish/lolfish_right_prompt.fish" >> $HOME/.config/fish/config.fish`
 
 [screenshot1]: http://i.imgur.com/InJELf3.png
 [screenshot2]: http://i.imgur.com/v6aI9AB.png
