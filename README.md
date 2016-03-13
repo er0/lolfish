@@ -7,7 +7,7 @@ such rainbow, wow.
 
 ## Install
 
-With Fisherman
+With [Fisherman](https://github.com/fisherman/fisherman)
 
 ```fish
 fisher i lolfish
