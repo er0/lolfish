@@ -5,6 +5,24 @@ such rainbow, wow.
 ![lolfish][screenshot1]
 ![lolfish][screenshot2]
 
+## Install
+
+With Fisherman
+
+```fish
+fisher i lolfish
+```
+
+### Manually
+
+#### Download both left and right prompts source files:
+  * `wget -O $HOME/.config/fish/lolfish_prompt.fish       https://github.com/er0/lolfish/raw/master/fish_prompt.fish`
+  * `wget -O $HOME/.config/fish/lolfish_right_prompt.fish https://github.com/er0/lolfish/raw/master/fish_right_prompt.fish`
+
+#### Source the prompt files from your primary fish config:
+  * `echo "source $HOME/.config/fish/lolfish_prompt.fish"       >> $HOME/.config/fish/config.fish`
+  * `echo "source $HOME/.config/fish/lolfish_right_prompt.fish" >> $HOME/.config/fish/config.fish`
+
 
 ## Features
 
@@ -31,16 +49,6 @@ such rainbow, wow.
   * Number of tmux sessions, [tmux:7]
   * The time and Date: Hour:Min Day-Month-Year
 
-
-## Install
-
-#### Download both left and right prompts source files:
-  * `wget -O $HOME/.config/fish/lolfish_prompt.fish       https://github.com/er0/lolfish/raw/master/fish_prompt.fish`
-  * `wget -O $HOME/.config/fish/lolfish_right_prompt.fish https://github.com/er0/lolfish/raw/master/fish_right_prompt.fish`
-
-#### Source the prompt files from your primary fish config:
-  * `echo "source $HOME/.config/fish/lolfish_prompt.fish"       >> $HOME/.config/fish/config.fish`
-  * `echo "source $HOME/.config/fish/lolfish_right_prompt.fish" >> $HOME/.config/fish/config.fish`
 
 [screenshot1]: http://i.imgur.com/InJELf3.png
 [screenshot2]: http://i.imgur.com/v6aI9AB.png
