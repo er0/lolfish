@@ -7,21 +7,28 @@ such rainbow, wow.
 
 ## Install
 
-With [Fisherman](https://github.com/fisherman/fisherman)
+With [Fisherman](https://github.com/fisherman/fisherman):
 
 ```fish
 fisher i lolfish
 ```
 
-## Manually
+Manually
 
-### Download both left and right prompts source files:
-  * `wget -O $HOME/.config/fish/lolfish_prompt.fish       https://github.com/er0/lolfish/raw/master/fish_prompt.fish`
-  * `wget -O $HOME/.config/fish/lolfish_right_prompt.fish https://github.com/er0/lolfish/raw/master/fish_right_prompt.fish`
+Download both left and right prompts source files:
 
-### Source the prompt files from your primary fish config:
-  * `echo "source $HOME/.config/fish/lolfish_prompt.fish"       >> $HOME/.config/fish/config.fish`
-  * `echo "source $HOME/.config/fish/lolfish_right_prompt.fish" >> $HOME/.config/fish/config.fish`
+```fish
+mkdir -p $HOME/.config/fish
+wget -O $HOME/.config/fish/lolfish_prompt.fish https://github.com/er0/lolfish/raw/master/fish_prompt.fish
+wget -O $HOME/.config/fish/lolfish_right_prompt.fish https://github.com/er0/lolfish/raw/master/fish_right_prompt.fish
+```
+
+Source the prompt files from your primary fish config:
+
+```fish
+echo "source $HOME/.config/fish/lolfish_prompt.fish" >> $HOME/.config/fish/config.fish
+echo "source $HOME/.config/fish/lolfish_right_prompt.fish" >> $HOME/.config/fish/config.fish
+```
 
 
 ## Features
