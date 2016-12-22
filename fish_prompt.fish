@@ -27,15 +27,11 @@ function lolfish -d "such rainbow. wow"
     # n=21 : blue
     # n=26 : magenta
     #
-    # start with a random color
-    if test -z $lolfish_next_color
-        # Use a global variable for lolfish_next_color so the next
-        # iteration of the prompt can continue the color sequence.
-        set -g lolfish_next_color (math (random)%(count $colors plus_one))
-    else if test $lolfish_next_color -gt (count $colors); or test $lolfish_next_color -le 0
-        # Reset lolfish_next_color to the beginning when
-        # it grows beyond the valid color range.
-        set lolfish_next_color 1
+    if test -z $lolfish_next_color; or \
+       test $lolfish_next_color -gt (count $colors); or \
+       test $lolfish_next_color -le 0
+         # set to red
+         set -g lolfish_next_color 1
     end
 
     # Set the color differential between prompt items.
@@ -58,12 +54,12 @@ function lolfish -d "such rainbow. wow"
         end
 
         # saftey checks
+        # set $color if it's not set yet
         if test -z $color
-            # set $color if it's not set yet
             set color $lolfish_next_color
+        # Reset color to the beginning when it grows
+        # beyond the valid color range.
         else if test $color -gt (count $colors); or test $color -le 0
-            # Reset color to the beginning when it grows
-            # beyond the valid color range.
             set color 1
         end
 
