@@ -10,7 +10,7 @@ such rainbow, wow.
 Using [oh-my-fish](https://github.com/oh-my-fish/oh-my-fish):
 
 ```Bash
-omf theme lolfish
+omf install lolfish
 ```
 ### Less Easy Install
 
