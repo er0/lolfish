@@ -9,20 +9,17 @@ such rainbow, wow.
 
 Using [oh-my-fish](https://github.com/oh-my-fish/oh-my-fish):
 
-```fish
+```Bash
 omf theme lolfish
 ```
 ### Less Easy Install
 
-Download both left and right prompts source files, and
-Source the prompt files from your primary fish config:
+Download and source the prompt file
 
 ```Bash
 mkdir -p $HOME/.config/fish
-wget -O $HOME/.config/fish/lolfish_prompt.fish https://github.com/er0/lolfish/raw/master/fish_prompt.fish
-wget -O $HOME/.config/fish/lolfish_right_prompt.fish https://github.com/er0/lolfish/raw/master/fish_right_prompt.fish
-echo "source $HOME/.config/fish/lolfish_prompt.fish" >> $HOME/.config/fish/config.fish
-echo "source $HOME/.config/fish/lolfish_right_prompt.fish" >> $HOME/.config/fish/config.fish
+wget -O $HOME/.config/fish/lol.fish https://github.com/er0/lolfish/raw/master/lol.fish
+echo "source $HOME/.config/fish/lol.fish" >> $HOME/.config/fish/config.fish
 ```
 
 ## Features
