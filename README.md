@@ -12,14 +12,12 @@ Using [oh-my-fish](https://github.com/oh-my-fish/oh-my-fish):
 ```Bash
 omf install lolfish
 ```
-### Less Easy Install
+## Less Easy Install
 
 Download and source the prompt file
 
 ```Bash
-mkdir -p $HOME/.config/fish
-wget -O $HOME/.config/fish/lol.fish https://github.com/er0/lolfish/raw/master/lol.fish
-echo "source $HOME/.config/fish/lol.fish" >> $HOME/.config/fish/config.fish
+curl https://github.com/er0/lolfish/raw/master/lol.fish -o $HOME/.config/fish/conf.d/lol.fish 
 ```
 
 ## Features
