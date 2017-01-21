@@ -17,7 +17,7 @@ omf install lolfish
 Download and source the prompt file
 
 ```Bash
-curl https://github.com/er0/lolfish/raw/master/lol.fish -o $HOME/.config/fish/conf.d/lol.fish 
+curl -L https://github.com/er0/lolfish/raw/master/lol.fish -o $HOME/.config/fish/conf.d/lol.fish 
 ```
 
 ## Features
