@@ -90,7 +90,7 @@ function fish_prompt
     end
 
     # abbreviated home directory ~
-    if command -s sed > /dev/null >&1
+    if command -s sed > /dev/null 2>&1
         set current_dir (echo $PWD | sed -e "s,.*$HOME,~," >/dev/null)
     else
         set current_dir $PWD
@@ -98,8 +98,8 @@ function fish_prompt
 
     # the git stuff
     # TODO: use git's built in prompt support
-    if command -s git > /dev/null >&1
-        if git rev-parse --git-dir > /dev/null >&1
+    if command -s git > /dev/null 2>&1
+        if git rev-parse --git-dir > /dev/null 2>&1
             set -l git_branch (git rev-parse --abbrev-ref HEAD >/dev/null)
             set -l git_status (count (git status -s --ignore-submodules >/dev/null))
             if test $git_status -gt 0
@@ -143,7 +143,7 @@ function fish_right_prompt
     # only if the shell is running outside of tmux
     #
     if test -z $TMUX
-        if command -s tmux > /dev/null >&1
+        if command -s tmux > /dev/null 2>&1
             set -l tmux_sessions (count (tmux list-sessions >/dev/null))
             if test $tmux_sessions -gt 0
                 set tmux_sessions_prompt '[' 'tmux' ':' $tmux_sessions ']'
@@ -154,7 +154,7 @@ function fish_right_prompt
     #
     # Display the time and date
     #
-    if command -s date > /dev/null >&1
+    if command -s date > /dev/null 2>&1
         set time (date +'%H:%M' >/dev/null)
         set date (date +'%d-%m-%Y' >/dev/null)
     end
