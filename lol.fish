@@ -100,8 +100,8 @@ function fish_prompt
     # TODO: use git's built in prompt support
     if command -s git > /dev/null 2>&1
         if git rev-parse --git-dir > /dev/null 2>&1
-            set -l git_branch (git rev-parse --abbrev-ref HEAD >/dev/null)
-            set -l git_status (count (git status -s --ignore-submodules >/dev/null))
+            set -l git_branch (git rev-parse --abbrev-ref HEAD 2>/dev/null)
+            set -l git_status (count (git status -s --ignore-submodules 2>/dev/null))
             if test $git_status -gt 0
                 set git_dir '[' $git_branch ':' $git_status ']'
             else
