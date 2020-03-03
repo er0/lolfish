@@ -155,8 +155,8 @@ function fish_right_prompt
     # Display the time and date
     #
     if command -s date > /dev/null 2>&1
-        set time (date +'%H:%M' >/dev/null)
-        set date (date +'%d-%m-%Y' >/dev/null)
+        set time (date +'%H:%M' 2>/dev/null)
+        set date (date +'%d-%m-%Y' 2>/dev/null)
     end
 
     lolfish $background_jobs_prompt $tmux_sessions_prompt $time ' ' $date
